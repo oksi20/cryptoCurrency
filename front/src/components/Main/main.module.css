@@ -1,0 +1,41 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta:wght@200;300;400&display=swap');
+/* font-family: 'Cedarville Cursive', cursive; */
+/* font-family: 'Oswald', sans-serif; */
+body{
+  font-family:'Raleway', sans-serif;
+  height:100vh;
+  background: rgb(12, 12, 12) url('http://localhost:3000/images/vita-vilcina-VMLGC5A3QTE-unsplash (1).jpg') center 0% / cover;
+  color:floralwhite;
+  /* overflow: hidden; */
+}
+.container{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 400px;
+  padding:0 1rem;
+}
+
+.heading{
+  font-weight: 200;
+  font-size: 40px;
+  font-family: 'Mukta', sans-serif;
+}
+@media(min-width:1200px){
+  h1{
+font-size:5rem;
+  }
+}
+@media(max-width:800px){
+  .container{
+    padding:0 1rem;
+  }
+  h1{
+font-size:3rem;
+  }
+}
+@media(max-width:500px){
+  h1{
+    font-size:2.5rem;
+  }
+}
