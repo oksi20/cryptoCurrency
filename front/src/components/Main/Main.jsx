@@ -1,8 +1,8 @@
 import main from './main.module.css'
-
-// import Typewriter from 'typewriter-effect';
 import ReactTypingEffect from 'react-typing-effect';
+
 const Main=()=>{
+
   
   return(
   <div className={main.container}>

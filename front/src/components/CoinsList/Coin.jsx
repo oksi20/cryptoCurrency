@@ -10,9 +10,9 @@ const Coin=({name, image, symbol, rate, volume, priceChange})=>{
           <p className={style["coin-symbol"]}>{symbol}</p>
         </div>
         <div className={style["coin-data"]}>
-          <p className={style["coin-price"]}>{rate}</p>
+          <p className={style["coin-price"]}>{rate.toLocaleString()}</p>
             <p className={style["coin-volume"]}>{volume.toLocaleString()}</p>
-            <p className={`style["coin-percent"] ${priceChange<0? style['red']:style['green']}`} >{priceChange.toFixed(2)}%</p>
+            <p className={`${style["coin-percent"]} ${priceChange<0? style.red:style.green}`} >{priceChange.toFixed(2)}%</p>
           </div>
         </div>
       </div>

@@ -1,0 +1,15 @@
+.coins{
+  background-color: rgba(19, 20, 19, 0.9);
+  padding:5px 20px;
+}
+.coinsearch{
+
+  margin:auto;
+  display: flex;
+  justify-content: center;
+  padding: 20px 20px 50px 20px;
+  
+}
+.cointext{
+  padding:0 20px;
+}

@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import mod from"./login.module.css"
+import {fetchLoginUser} from '../../redux/reducer/authReducer'
+import {fetchDownloadCart} from '../../redux/reducer/cartReducer'
+
 import {
   Button,
   Modal,
@@ -13,17 +16,30 @@ import {
   NavLink,
   Alert
 } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Login=()=>{
   const history=useHistory()
-  const [modal, setModal] = useState(false);
+  const dispatch=useDispatch();
+  const [modal, setModal] = useState(true);
+  const user=useSelector(state=>state.user.user);
+  const error=useSelector(state=>state.user.error);
+  console.log("errorState", error);
+ 
 
   useEffect(()=>{
-    handleToggle() 
-  }, [])
+    setMsg(error);
+if (user.username){
+  // dispatch(fetchDownloadCart({username}))
+  handleToggleandRedirect()
+}
+  }, [error, user])
 
   const [username, setUsername]=useState('')
   const [password, setPassword]=useState('')
+  const [msg, setMsg]=useState(null);
+  
+
   const handleToggle=()=>{
     setModal(!modal);
   }
@@ -31,20 +47,26 @@ const Login=()=>{
     setModal(!modal);
     history.push('/');
   }
-  let msg=false;
-  const handleOnSubmit=()=>{
+  
+  const handleOnSubmit=(e)=>{
+    e.preventDefault();
+dispatch(fetchLoginUser({username, password}))
+
+// setMsg(error);
 
   }
-  const handleChangeName = (e) => setUsername(e.target.value);
-  const handleChangePassword = (e) => setPassword(e.target.value);
-
-
-
+  const handleChangeName = (e) => {
+    setUsername(e.target.value);
+  setMsg(null);
+  }
+  const handleChangePassword = (e) => {
+    setPassword(e.target.value);
+  setMsg(null);
+  }
 
 
 return(
-<div>
-      
+<div>    
       <Modal isOpen={modal} >
         <ModalHeader toggle={handleToggleandRedirect} className={mod['text']}>Login</ModalHeader>
         <ModalBody>

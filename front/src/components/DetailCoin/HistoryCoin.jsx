@@ -1,42 +1,38 @@
-// import {Chart} from "chart.js";
-// import { useEffect, useRef } from "react";
-// import { chartOption } from "./chartOptions";
+import {Chart} from "chart.js";
+import { useEffect, useRef } from "react";
+import { chartOption } from "./chartOptions";
+import style from './history.module.css'
 
 
 
-// // Chart.register(Tooltip, CategoryScale, LinearScale, Title);
+// Chart.register(Tooltip, CategoryScale, LinearScale, Title);
 
-// const HistoryCoin=({coinData})=>{
-//   const chartRef=useRef();
-// const {day, week, year}=coinData;
+const HistoryCoin=({coinData})=>{
+  const chartRef=useRef();
+const {day, week, year}=coinData;
 
-//   useEffect(()=>{
-//     if (chartRef && chartRef.current){
+  useEffect(()=>{
+    if (chartRef && chartRef.current){
+                new Chart(chartRef.current, {
+                    type:"line",
+                     data:{
+                         datasets:[
+                         {
+                           label:"coins",
+                           data:day,
+                           borderColor:"green",
+                          //  backgroundColor:"green",
+                            pointRadius:0,
+                            // fill:false
+                           
+                        },
+                      ],
+                      },
+                         options:{...chartOption},
+                      })
+            };
+        });
     
-//       require(['chartjs'], function(Chart) {
-//         require(['moment'], function() {
-//             require(['chartjs-adapter-moment'], function() {
-//                 new Chart(ctx, {
-//                     type:"line",
-//                      data:{
-//                          datasets:[
-//                          {
-//                            label:"coins",
-//                            data:day,
-//                            borderColor:"red",
-//                             pointRadius:0,
-//                             // backgroundColor:'transperant'
-                  
-//                         },
-//                       ],
-//                       },
-//                          options:{...chartOption},
-//                       })
-                  
-//                     });
-//             });
-//         });
-//     }});
 
 
 //    const chartInst=new Chart(chartRef.current, {
@@ -58,12 +54,12 @@
 
 //     }
 //  }, [])
-//   return(
-// <div>
-//   <canvas ref={chartRef} id="myChart" width={250} height={250}></canvas>
-// </div>
-//   )
-//   }
+  return(
+<div className={style["canvas"]}>
+  <canvas ref={chartRef} id="myChart" width={300} height={"300"}></canvas>
+</div>
+  )
+  }
 // return(
 //   <Line data={{
 //     datasets:[
@@ -81,4 +77,4 @@
 // }
 
 
-// export default HistoryCoin;
+export default HistoryCoin;

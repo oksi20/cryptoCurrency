@@ -1,12 +1,57 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
-export const fetchGetCoinsList=createAsyncThunk(
-  'user/fetchGetUser',
-  async ()=>{
-    const response=await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=50&page=1&sparkline=false')
-    const result= await response.json()
+export const fetchRegisterUser=createAsyncThunk(
+  'user/fetchRegisterUser',
+  async ({username, email, password})=>{
+    const response=await fetch('http://localhost:8000/signup', {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type":"application/json"
+    },
+    body: JSON.stringify({email, username, password})
+  })
+  const result = await response.json();
+  console.log(result)
     return result;
-  }
+}
+)
+export const fetchLoginUser=createAsyncThunk(
+  'user/fetchLoginUser',
+  async ({username, password})=>{
+    const response=await fetch('http://localhost:8000/login', {
+    method: "POST",
+    credentials: "include",
+    headers: {
+      "Content-Type":"application/json"
+    },
+    body: JSON.stringify({username, password})
+  })
+  const result = await response.json();
+  console.log('result',result)
+    return result;
+}
+)
+export const fetchLogoutUser=createAsyncThunk(
+  'user/fetchLogoutUser',
+  async ()=>{
+    const response=await fetch('http://localhost:8000/logout', {
+      credentials: "include",
+    })
+  const result = await response.json();
+    return result;
+}
+)
+
+export const fetchGetCoins=createAsyncThunk(
+  'user/fetchGetCoins',
+  async (username)=>{
+    const response=await fetch(`http://localhost:8000/${username}`, {
+      credentials: "include",
+    })
+  const result = await response.json();
+    return result;
+}
 )
 
 export const userSlice = createSlice({
@@ -18,30 +63,85 @@ export const userSlice = createSlice({
     user:{},
   },
   reducers: {
-    // userLoaded=(state, action)=>{
-    //   state.loading=false;
-    //   state.user=action.payload;
-    // },
+    
 
 
   },
   extraReducers:{
-    [fetchGetUser.pending]:(state, action)=>{
+    [fetchRegisterUser.pending]:(state, action)=>{
       state.loading=true;
       state.error=null;
     },
-    [fetchGetUser.fulfilled]:(state, {payload})=>{
+    [fetchRegisterUser.fulfilled]:(state, {payload})=>{
+      if (payload.error){
+        state.error=payload;
+      } else {
       state.user=payload;
+      state.isAuthorised=true;
+      }
       state.loading=false;
+      
     },
-    [fetchGetUser.rejected]:(state, action)=>{
-      state.error=action.error.message;
+    [fetchRegisterUser.rejected]:(state, action)=>{
+      state.error=action.payload.error;
       state.loading=false;
+      
+    },
+    [fetchLoginUser.pending]:(state, action)=>{
+      state.loading=true;
+      state.error=null;
+    },
+    [fetchLoginUser.fulfilled]:(state, {payload})=>{
+      if (payload.err){
+        state.error=payload.err;
+      } else {
+      state.user=payload;
+      state.isAuthorised=true;
+      }
+      state.loading=false;
+      
+    },
+    [fetchLoginUser.rejected]:(state, action)=>{
+      console.log(action.payload)
+      state.error=action.payload;
+      state.loading=false;
+      
+    },
+    [fetchLogoutUser.pending]:(state, action)=>{
+      state.loading=true;
+      state.error=null;
+    },
+    [fetchLogoutUser.fulfilled]:(state, {payload})=>{
+      state.error=null;
+      state.user={}
+      state.isAuthorised=false;
+      state.loading=false;
+      
+    },
+    [fetchLogoutUser.rejected]:(state, action)=>{
+      state.error=action.payload;
+      state.loading=false;
+      
+    },
+    [fetchGetCoins.pending]:(state, action)=>{
+      state.loading=true;
+      state.error=null;
+    },
+    [fetchGetCoins.fulfilled]:(state, {payload})=>{
+      state.error=null;
+      state.user={...state.user, coins:payload}
+      state.loading=false;
+      
+    },
+    [fetchGetCoins.rejected]:(state, action)=>{
+      state.error=action.payload;
+      state.loading=false;
+      
     }
   }
 })
 
 // Action creators are generated for each case reducer function
-// export const { download} = cryptoSlice.actions
 
-export default coinsSlice.reducer
+
+export default userSlice.reducer

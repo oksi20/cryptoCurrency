@@ -1,6 +1,7 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import mod from "./register.module.css"
+import {fetchRegisterUser} from '../../redux/reducer/authReducer'
 import {
   Button,
   Modal,
@@ -13,18 +14,39 @@ import {
   NavLink,
   Alert
 } from 'reactstrap';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Register=()=>{
   const history=useHistory()
-  const [modal, setModal] = useState(false);
+  const dispatch=useDispatch()
+ const error=useSelector(state=>state.user.error)
+ const regUser=useSelector(state=>state.user.user)
+ console.log("regUser", regUser);
 
-  useEffect(()=>{
-    handleToggle() 
-  }, [])
+
 
   const [username, setUsername]=useState('')
   const [email, setEmail]=useState('')
   const [password, setPassword]=useState('')
+  const [modal, setModal] = useState(true);
+  const [msg, setMsg]=useState(null)
+  const [user, setUser ]=useState({})
+
+  const handleOnSubmit=(e)=>{
+    e.preventDefault();
+    dispatch(fetchRegisterUser({username, email, password}))
+    }
+
+useEffect(()=>{
+  setMsg(error);
+  setUser(regUser);
+  if (regUser.username){
+    handleToggle()
+    history.push('/')
+  }
+
+}, [error, regUser])
+
   const handleToggle=()=>{
     setModal(!modal);
   }
@@ -32,25 +54,25 @@ const Register=()=>{
     setModal(!modal);
     history.push('/');
   }
-  let msg=false;
-  const handleOnSubmit=()=>{
 
-  }
-  const handleChangeName = (e) => setUsername(e.target.value);
+    
+
+  const handleChangeName = (e) => {
+    setUsername(e.target.value);
+    setMsg(null)};
   const handleChangeEmail = (e) => setEmail(e.target.value);
   const handleChangePassword = (e) => setPassword(e.target.value);
 
-
-
+  
+  
 
 
 return(
 <div>
-      
       <Modal isOpen={modal} >
         <ModalHeader toggle={handleToggleandRedirect} className={mod['text']}>Register</ModalHeader>
         <ModalBody>
-          {msg ? <Alert color="danger">{msg}</Alert> : null}
+          {msg ? <Alert color="danger">{msg.error}</Alert> : null}
           <Form onSubmit={handleOnSubmit}>
             <FormGroup>
               <Label for="username" className={mod['text']}>Userame</Label>
@@ -60,6 +82,7 @@ return(
                 id="username"
                 placeholder="Name"
                 className="mb-3"
+                required
                 onChange={handleChangeName}
               />
 
@@ -70,6 +93,7 @@ return(
                 id="email"
                 placeholder="Email"
                 className="mb-3"
+                required
                 onChange={handleChangeEmail}
               />
 
@@ -80,6 +104,7 @@ return(
                 id="password"
                 placeholder="Password"
                 className="mb-3"
+                required
                 onChange={handleChangePassword}
               />
               <Button color="dark" style={{ marginTop: '2rem' }} block>

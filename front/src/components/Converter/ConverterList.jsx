@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import Converter from './Converter';
 import FormConverter from './FormConverter';
+import list from "./list.module.css"
 
 const ConverterList = () => {
   let arrCrypto = useSelector((state) => state.coinspartial.cryptoArray);
@@ -12,18 +13,19 @@ const ConverterList = () => {
     setSelectedCrypto(chosenCard);
   };
   return (
-    <div className="container mt-5">
+    <div className={`container mt-5 ${list.list}`}>
       <div className="row mt-5">
         <div className="col-6 m-auto">
           <FormConverter
             symbol={selectedCrypto.symbol}
             rate={selectedCrypto.current_price}
+            id={selectedCrypto.id}
           />
         </div>
       </div>
       <div className="row">
-        <div className="col">
-          <div className="d-flex flex-wrap">
+        <div className="col-12">
+          <div className={`d-flex flex-wrap ${list.box}`}>
             {arrCrypto.map((el) => (
               <Converter
                 key={el.id}
