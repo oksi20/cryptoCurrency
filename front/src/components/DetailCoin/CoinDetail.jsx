@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom"
 import DataCoin from "./DataCoin";
 import HistoryCoin from "./HistoryCoin";
-import style from './details.css'
+import style from './details.module.css'
 
 const CoinDetail=()=>{
   const {id}=useParams();
-  const [coinData, setCoinData]=useState({})
+  const [coinData, setCoinData]=useState(null)
 
   const arrayToobject=data=>{
     return data.map(el=>{
@@ -22,11 +22,11 @@ const CoinDetail=()=>{
       const weekResult =await week.json();
       const yearResult =await year.json();
       
-      setCoinData({
-        day:arrayToobject(dayResult.prices),
-        week:arrayToobject(weekResult.prices),
-        year:arrayToobject(yearResult.prices),
-      })
+      setCoinData([
+        ['day', arrayToobject(dayResult.prices)],
+        ['week', arrayToobject(weekResult.prices)],
+        ['year', arrayToobject(yearResult.prices)],
+      ])
 
     }
     fetchCoin();
@@ -35,10 +35,8 @@ const CoinDetail=()=>{
 console.log('Day', coinData)
   const renderData=()=>{
     return(
-      <div className="coinlist" >
-        
-        <HistoryCoin coinData={coinData}/>
-        <DataCoin />
+      <div className={style.coinlist} >    
+    {coinData? coinData.map((el, indx)=><HistoryCoin key={indx} name={el[0]} data={el[1]}/>) :(<div></div>)}   
       </div>
     )
   }

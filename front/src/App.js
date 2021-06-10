@@ -16,6 +16,7 @@ import Cart from './components/Cart/Cart';
 import Profile from './components/Profile/Profile';
 import { useDispatch, useSelector } from 'react-redux';
 import {fetchDownloadCart} from "./redux/reducer/cartReducer"
+import Stats from './components/Stats/Stats';
 
 
 function App() {
@@ -56,6 +57,9 @@ function App() {
         </Route>
         <Route exact path="/profile">
           <Profile />
+        </Route>
+        <Route exact path="/statistic">
+          <Stats />
         </Route>
         <Route exact path="/">
           <Main />

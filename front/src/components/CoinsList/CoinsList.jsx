@@ -23,19 +23,18 @@ const CoinsList=()=>{
   }
 
 const filteredCoins=coins.filter(coin=>coin.name.toLowerCase().includes(search.toLowerCase()))
+console.log("filteredCoins", filteredCoins)
 return (
   <div className={`container mt-5 ${fulllist.coins}`}>
     <div className={fulllist.coinsearch}>
-      {/* <form>
-<input type="text" placeholder='Search' className='coininput' onChange={searchCoin}/>
-      </form> */}
+    
         <form className="d-flex">
         <input className="form-control" type="search" placeholder="Search by name" aria-label="Search" onChange={searchCoin}/>
         <button className="btn btn-outline-success" type="button" disabled>Search</button>
       </form>
     </div>
     <CoinHeader />
-    {filteredCoins.map(coin=><Coin key={coin.id} name={coin.name} image={coin.image} symbol={coin.symbol} volume={coin.market_cap} rate={coin.current_price} priceChange={coin.price_change_percentage_24h} />   )}
+    {filteredCoins.map(coin=><Coin key={coin.id} id={coin.id} name={coin.name} image={coin.image} symbol={coin.symbol} volume={coin.market_cap} rate={coin.current_price} priceChange={coin.price_change_percentage_24h} />   )}
   </div>
 )
 }

@@ -1,0 +1,6 @@
+.coinlist{
+  background: rgba(0, 0, 0, 0.9);
+  display: flex;
+  margin-top: 50px;
+  color:white;
+}

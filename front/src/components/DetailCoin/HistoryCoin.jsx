@@ -7,9 +7,9 @@ import style from './history.module.css'
 
 // Chart.register(Tooltip, CategoryScale, LinearScale, Title);
 
-const HistoryCoin=({coinData})=>{
+const HistoryCoin=({name, data})=>{
   const chartRef=useRef();
-const {day, week, year}=coinData;
+// const {day, week, year}=coinData;
 
   useEffect(()=>{
     if (chartRef && chartRef.current){
@@ -18,11 +18,12 @@ const {day, week, year}=coinData;
                      data:{
                          datasets:[
                          {
-                           label:"coins",
-                           data:day,
+                           label:`period time: ${name}`,
+                           data:data,
                            borderColor:"green",
-                          //  backgroundColor:"green",
+                           backgroundColor:"green",
                             pointRadius:0,
+                            
                             // fill:false
                            
                         },

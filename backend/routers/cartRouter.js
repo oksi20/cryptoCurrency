@@ -1,7 +1,6 @@
 const { Router } = require("express");
 const Coin = require("../models/coin.model");
 const router = Router();
-const saltRounds = 10;
 const User=require('../models/user.model');
 
 router.route('/:username')

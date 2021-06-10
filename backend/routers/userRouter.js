@@ -7,7 +7,7 @@ const bcrypt = require("bcrypt");
 router.route("/signup")
 .post(async (req, res, next) => {
   try {
-    const { username, email, password } = req.body;
+    const { username, email, password, work} = req.body;
     console.log('email', email);
 
     if (!username || !email || !password) {
@@ -30,10 +30,10 @@ router.route("/signup")
     if (!hash) throw Error('Something went wrong hashing the password');
       
 
-    const user = await User.create({username, email, password: hash});
+    const user = await User.create({username, email, work, password: hash});
     
     req.session.user = user.username;
-    return res.status(201).json({ userId: user._id, username: user.username, coins:user.coins, email:user.email });
+    return res.status(201).json({ userId: user._id, username: user.username, coins:user.coins, email:user.email, work:user.work });
   } catch (error) {
     res.status(501).json({ error: error.message });
   }

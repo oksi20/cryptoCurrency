@@ -18,7 +18,7 @@ export const chartOption={
       {
         type:"time",
         time:{
-          unit:'hour'
+          // unit:'hour'
         },
         display: true,
     distribution:"linear",

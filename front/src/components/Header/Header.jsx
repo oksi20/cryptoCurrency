@@ -21,7 +21,6 @@ const Header =()=>{
  const logout=()=>{
    dispatch(fetchLogoutUser())
    dispatch(clearCart())
-  //  console.log(user.user);
    }
    
   
@@ -46,13 +45,14 @@ const Header =()=>{
             <li className="nav-item">
               <Link className={style["nav-link"]} to="/register" >Register</Link>
             </li>
+            
             </>): 
               (<>
               <li className="nav-item">
               <Link className={style["nav-link"]} to="/profile">Profile</Link>
             </li>
               <li className="nav-item">
-              <Link className={style["nav-link"]} to="/explore">Explore</Link>
+              <Link className={style["nav-link"]} to="/statistic">Statistic</Link>
             </li>
               <li className="nav-item">
               <Link className={style["nav-link"]} to="/logout" onClick={logout}>Logout</Link>

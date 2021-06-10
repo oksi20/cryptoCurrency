@@ -1,12 +1,12 @@
 import style from './coin.module.css'
 
-const Coin=({name, image, symbol, rate, volume, priceChange})=>{
+const Coin=({name, id, image, symbol, rate, volume, priceChange})=>{
   return(
     <div className={style["coin-container"]}>
       <div className={style["coin-row"]}>
         <div className={style["coin"]}>
           <img src={image} alt="crypto"/>
-          <h1>{name}</h1>
+          <h1><a href={`/coinslist/${id}`} className={style.link}>{name}</a></h1>
           <p className={style["coin-symbol"]}>{symbol}</p>
         </div>
         <div className={style["coin-data"]}>

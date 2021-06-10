@@ -2,17 +2,17 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 
 export const fetchRegisterUser=createAsyncThunk(
   'user/fetchRegisterUser',
-  async ({username, email, password})=>{
+  async ({username, email, password, work})=>{
     const response=await fetch('http://localhost:8000/signup', {
     method: "POST",
     credentials: "include",
     headers: {
       "Content-Type":"application/json"
     },
-    body: JSON.stringify({email, username, password})
+    body: JSON.stringify({email, username, password, work})
   })
   const result = await response.json();
-  console.log(result)
+  console.log('register', result)
     return result;
 }
 )
@@ -28,7 +28,7 @@ export const fetchLoginUser=createAsyncThunk(
     body: JSON.stringify({username, password})
   })
   const result = await response.json();
-  console.log('result',result)
+  console.log('login',result)
     return result;
 }
 )

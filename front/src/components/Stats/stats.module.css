@@ -1,0 +1,11 @@
+.stats{
+  background-color: rgba(0,0,0, 0.9);
+  margin-top:50px;
+  /* display: flex; */
+  /* flex-direction: column; */
+  /* align-items: center; */
+}
+.title{
+  padding: 40px 0;
+  text-align: center;
+}

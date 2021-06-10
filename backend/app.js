@@ -18,6 +18,7 @@ const bcrypt = require("bcrypt");
 // const Stat=require("./models/stats")
 const userRouter=require('./routers/userRouter')
 const cartRouter=require('./routers/cartRouter')
+const statsRouter=require('./routers/statsRouter')
 
 
 function cookiesCleaner(req, res, next) {
@@ -73,85 +74,12 @@ app.use(cookiesCleaner);
 
 // app.use("/:id/shoppingcart", cryptoRouter)
 app.use("/cart", cartRouter)
+app.use("/statistic",statsRouter)
 app.use("/", userRouter );
 
 
 
-// app.route('/statistic')
-// .get(async (req, res)=>{
-//   const stats = await Stat.find().lean();
-//   res.json(stats);
-// })
-// .post(async (req, res)=>{
 
-//   try{
-//     const stats = req.body;
-//     stats.username = req.session.user.username; 
-//     const newStat=await Stat.create(stats)
-//     // await User.findOneAndUpdate({username:req.session.user.username}, {$push:{stats: newStat._id}})
-//     res.sendStatus(200);
-//   }
-//   catch(error){
-//     return res.sendStatus(501);
-//   }
-// })
-
-// app
-//   .route("/signup")
-//   // обработка формы регистрации
-//   .post(async (req, res, next) => {
-//     try {
-//       // деструктуризация тела запроса
-//       const { username, password } = req.body.values;
-//       // создание нового юзера
-//       const user = new User({
-//         username,
-//         // хэширование его пароля
-//         password: await bcrypt.hash(password, saltRounds),
-//       });
-//       // сохранение в бд
-//       await user.save();
-//       // устанавливаем сессии локально
-//       req.session.user = user;
-//       // console.log(req.session.user, "sign up req session user");
-//       return res.status(201).json({ userId: user.id, username: user.username });
-//       // редиректим
-//     } catch (error) {
-//       // иначе переходим к обработчику ошибок
-//       res.sendStatus(501);
-//     }
-//   });
-// // ручка для логина
-// app.route("/login").post(async (req, res) => {
-//   try {
-//     const { username, password } = req.body.values;
-//     // ищем юзера в базе данных
-//     const user = await User.findOne({ username });
-//     // проверка (если юзер есть и пароль совпадает)
-//     if (user && (await bcrypt.compare(password, user.password))) {
-//       // тогда создаем новую локальную сессию
-//       req.session.user = user;
-//       // console.log(req.session.user, "login req session user");
-
-//       return res.status(202).json({ userId: user.id, username: user.username });
-//     } else res.status(404).json({error:true})
-//   } catch (err) {
-//     return res.sendStatus(502);
-//   }
-//   // деструктуризация тела запроса с формы
-// });
-
-// app.get("/logout", (req, res, next) => {
-//   console.log(req.session.user, 'logout req s u');
-//   req.session.destroy((err) => {
-//     if (err) {
-//       return next(err);
-//     }
-//     res.clearCookie("user_sid");
-//     // return res.redirect('/');
-//     return res.sendStatus(203);
-//   });
-// });
 
 app.listen(PORT, async () => {
   mongoose

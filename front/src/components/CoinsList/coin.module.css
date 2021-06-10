@@ -55,6 +55,13 @@
 .coin-percent{
   /* width: 100%; */
 }
+.link{
+  text-decoration: none;
+  color:white;
+}
+/* .link:hover{
+  border-bottom:1px solid green;
+} */
 .red{
   color:red;
 }
