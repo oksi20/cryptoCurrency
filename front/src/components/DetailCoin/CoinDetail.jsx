@@ -35,9 +35,12 @@ const CoinDetail=()=>{
 console.log('Day', coinData)
   const renderData=()=>{
     return(
+      <>
       <div className={style.coinlist} >    
     {coinData? coinData.map((el, indx)=><HistoryCoin key={indx} name={el[0]} data={el[1]}/>) :(<div></div>)}   
       </div>
+      <DataCoin id={id}/>
+      </>
     )
   }
 

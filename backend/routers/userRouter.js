@@ -45,7 +45,7 @@ try {
   const user = await User.findOne({ username });
   if (user && (await bcrypt.compare(password, user.password))) {
     req.session.user = user.username;
-    return res.status(202).json({ userId: user._id, username: user.username, coins:user.coins, email:user.email });
+    return res.status(202).json({ userId: user._id, username: user.username, coins:user.coins, email:user.email, work:user.work});
   } else {
     throw Error("username and password doesn't match")
   }

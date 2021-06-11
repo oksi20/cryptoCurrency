@@ -17,7 +17,7 @@ useEffect(()=>{
 
   return(
     <div className={`${profile.container} mt-5`}>
-<PersonalInfo username={user.username} email={user.email} />
+<PersonalInfo username={user.username} email={user.email} work={user.work} />
 <div className={profile.containerCard}>
 {user.coins.map(el=><PurchasedCoin key={el._id} coinname={el.coinname} amount={el.amount} converted={el.converted}/>)}
 </div>

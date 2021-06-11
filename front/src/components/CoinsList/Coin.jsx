@@ -1,4 +1,5 @@
-import style from './coin.module.css'
+import style from './coin.module.css';
+import {  Link} from "react-router-dom";
 
 const Coin=({name, id, image, symbol, rate, volume, priceChange})=>{
   return(
@@ -6,7 +7,7 @@ const Coin=({name, id, image, symbol, rate, volume, priceChange})=>{
       <div className={style["coin-row"]}>
         <div className={style["coin"]}>
           <img src={image} alt="crypto"/>
-          <h1><a href={`/coinslist/${id}`} className={style.link}>{name}</a></h1>
+          <h1><Link to={`/coinslist/${id}`} className={style.link}>{name}</Link></h1>
           <p className={style["coin-symbol"]}>{symbol}</p>
         </div>
         <div className={style["coin-data"]}>

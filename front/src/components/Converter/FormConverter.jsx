@@ -3,19 +3,23 @@ import Exchange from "./Exchange"
 import {Button, FormGroup} from 'reactstrap'
 import { useDispatch, useSelector } from "react-redux"
 import { addToCart, fetchAddCarttoDB } from "../../redux/reducer/cartReducer"
+import { useHistory } from "react-router-dom"
 
 const FormConverter=({symbol, rate, id})=>{
 const dispatch=useDispatch();
+const history=useHistory();
 const user=useSelector(state=>state.user.user)
   const INIT={amount:0, converted:0}
   const [input, setInput]=useState(INIT)
 
   useEffect(()=>{
    
-setInput({
-  ...input,
-  converted:(Number(input.amount)/rate).toFixed(3)
+setInput((prev)=>{
+  return {
+  ...prev,
+  converted:(Number(input.amount)/rate).toFixed(2)
 
+}
 })
   }, [symbol])
 
@@ -26,7 +30,12 @@ setInput({amount:val, converted:convertedPrice})
 
   }
   const addCryptoToCart=()=>{
-dispatch(fetchAddCarttoDB({cart:{...input, id}, username:user.username}))
+    if (user.username){
+      dispatch(fetchAddCarttoDB({cart:{...input, id}, username:user.username}))
+    } else {
+      history.push('/register')
+    }
+
 
   }
   return(

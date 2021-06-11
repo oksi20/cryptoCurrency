@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import mod from"./login.module.css"
 import {fetchLoginUser} from '../../redux/reducer/authReducer'
-import {fetchDownloadCart} from '../../redux/reducer/cartReducer'
+import {clearError} from '../../redux/reducer/authReducer'
 
 import {
   Button,
@@ -44,6 +44,7 @@ if (user.username){
     setModal(!modal);
   }
   const handleToggleandRedirect=()=>{
+    dispatch(clearError());
     setModal(!modal);
     history.push('/');
   }

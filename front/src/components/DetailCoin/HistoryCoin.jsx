@@ -21,8 +21,9 @@ const HistoryCoin=({name, data})=>{
                            label:`period time: ${name}`,
                            data:data,
                            borderColor:"green",
-                           backgroundColor:"green",
+                           backgroundColor: "green",
                             pointRadius:0,
+                            color:"white"
                             
                             // fill:false
                            

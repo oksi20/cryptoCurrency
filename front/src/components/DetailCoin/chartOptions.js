@@ -13,6 +13,13 @@ export const chartOption={
   maintainAspectRation:false,
   responsive:true,
   
+  legend: {
+    labels: {
+        fontColor: "white",
+        // fontSize: 15
+    }
+},
+
   scales:{
     xAxes:[
       {
@@ -22,12 +29,20 @@ export const chartOption={
         },
         display: true,
     distribution:"linear",
-  }
+  //   ticks: {
+  //     fontColor: "white",
+  //     stepSize: 1,
+  //     beginAtZero: true
+  // }
+  },
+  
     ],
     // yAxes:[
     //   {
     //     ticks:{
-    //       beginAtZero:true,
+    //       fontColor: "white",
+    //   // stepSize: 1,
+    //   // beginAtZero: true
     //     }
     //   }
     // ],

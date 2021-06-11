@@ -1,6 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap');
 .span{
   width: 100px;
-  background: rgb(192 226 200);
-  color:black;
+  background-color:rgba(172, 171, 171, 0.2);
+  color:rgb(155, 154, 154);
+  font-size: 15px;
+  border: 0.1px solid rgb(17, 16, 16);
+}
+.fontF{
+font-family: 'Cedarville Cursive', cursive;
+font-size: 20px;
+color:black;
+border: 0.1px solid rgb(17, 16, 16);
 }
 
+.box{
+  width:400px;
+  margin: auto;
+}

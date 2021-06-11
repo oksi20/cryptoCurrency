@@ -2,6 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import { useHistory } from 'react-router-dom';
 import mod from './register.module.css';
 import { fetchRegisterUser } from '../../redux/reducer/authReducer';
+import {clearError} from '../../redux/reducer/authReducer'
 import {
   Button,
   Modal,
@@ -49,6 +50,7 @@ const Register = () => {
     setModal(!modal);
   };
   const handleToggleandRedirect = () => {
+    dispatch(clearError())
     setModal(!modal);
     history.push('/');
   };

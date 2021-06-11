@@ -2,5 +2,10 @@
   width: 200px;
   height: 150px;
   font-family:'Mukta', sans-serif;
-  background-color: rgb(192 226 200);
+  border:0.5px solid rgb(31, 27, 27);
+  
+}
+.cardtitle{
+  border:1px solid green;
+
 }
