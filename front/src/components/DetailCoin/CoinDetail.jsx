@@ -3,10 +3,13 @@ import { useParams } from "react-router-dom"
 import DataCoin from "./DataCoin";
 import HistoryCoin from "./HistoryCoin";
 import style from './details.module.css'
+import { useSelector } from "react-redux";
+import Loader from "../Loader/Loader";
 
 const CoinDetail=()=>{
   const {id}=useParams();
-  const [coinData, setCoinData]=useState(null)
+  const [coinData, setCoinData]=useState(null);
+  const coinLoading=useSelector(state=>state.coinspartial.loading)
 
   const arrayToobject=data=>{
     return data.map(el=>{
@@ -36,9 +39,10 @@ console.log('Day', coinData)
   const renderData=()=>{
     return(
       <>
+      {coinLoading? <Loader /> :( <>
       <div className={style.coinlist} >    
     {coinData? coinData.map((el, indx)=><HistoryCoin key={indx} name={el[0]} data={el[1]}/>) :(<div></div>)}   
-      </div>
+      </div></>)}
       <DataCoin id={id}/>
       </>
     )

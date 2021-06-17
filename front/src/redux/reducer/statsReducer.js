@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 export const fetchGetAllUsers=createAsyncThunk(
   'stats/fetchGetAllUsers',
   async ()=>{
-    const response=await fetch('http://localhost:8000/statistic', {
+    const response=await fetch('/statistic', {
     credentials: "include",
   })
   const result = await response.json();

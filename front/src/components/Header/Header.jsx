@@ -12,6 +12,7 @@ const Header =()=>{
   const cart=useSelector(state=>state.cart)
   const [userCart, setCart]=useState([])
 
+
   useEffect(()=>{
     setCart(cart.cart)
   }, [cart])
@@ -61,18 +62,25 @@ const Header =()=>{
           </ul>
           <div className="d-flex mt-2">
            
+        
+      <Link className={`${style["nav-link"]}  "m-2"`} to={`/cart/${user.user.username}`} >
+     {userCart.length?
+      <i style={{marginTop:10, marginRight:15, color:"green"}} className="fas fa-shopping-cart fa-lg shopcart">
+         <span className={style.shopNum}>{userCart.length}</span></i>:<i style={{marginTop:10, marginRight:15, color:"white"}} className="fas fa-shopping-cart fa-lg shopcart"></i>
+      
+        }
+        
+        {/* {
+          userCart.length? <i style={{marginTop:10, marginRight:15, color:"red"}} class="fas fa-shopping-cart fa-lg"></i> :
+          <i style={{marginTop:10, marginRight:15, color:"white"}} className="fas fa-shopping-cart fa-lg shopcart"><span className={style.shopNum}>3</span></i> 
+         }
+              */}
+            
+          </Link>
           <form className="d-flex mr-4">
         <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
         <button className="btn btn-outline-success" type="submit">Search</button>
       </form>
-      <Link className={`${style["nav-link"]}  "m-2"`} to={`/cart/${user.user.username}`} >
-        {
-          userCart.length? <i style={{marginTop:10, marginRight:15, color:"red"}} class="fas fa-shopping-cart fa-lg"></i> :
-          <i style={{marginTop:10, marginRight:15, color:"white"}} class="fas fa-shopping-cart fa-lg"></i> 
-         }
-             
-              {/* className={`${style["coin-percent"]} ${priceChange<0? style.red:style.green}`} */}
-          </Link>
       </div>
           </div>
         </nav>

@@ -19,7 +19,13 @@ const bcrypt = require("bcrypt");
 const userRouter=require('./routers/userRouter')
 const cartRouter=require('./routers/cartRouter')
 const statsRouter=require('./routers/statsRouter')
+const app = express();
 
+const buildHtml=path.resolve(__dirname, "../front/build/index.html");
+const buildStatic=path.resolve(__dirname, "../front/build/");
+
+app.use(express.static(buildStatic));
+app.use(morgan("dev"));
 
 function cookiesCleaner(req, res, next) {
   // если куки есть и нет текущей сессии, то чистим куки
@@ -38,7 +44,7 @@ const sessionChecker = (req, res, next) => {
 };
 
 const saltRounds = 10;
-const app = express();
+
 const PORT = 8000;
 
 app.use(
@@ -73,9 +79,13 @@ app.use(cookiesCleaner);
 
 
 // app.use("/:id/shoppingcart", cryptoRouter)
-app.use("/cart", cartRouter)
-app.use("/statistic",statsRouter)
-app.use("/", userRouter );
+app.use("/api/v1/cart", cartRouter)
+app.use("/api/v1/statistic",statsRouter)
+app.use("/api/v1/", userRouter );
+
+app.get("*", (req, res)=>{
+res.sendFile(buildHtml);
+})
 
 
 

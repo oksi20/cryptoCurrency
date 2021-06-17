@@ -30,11 +30,11 @@ dispatch(updateUsers(updatedArr))
 for (let i=0; i<users[el].length; i++){
  
   if (users[el][i].coinname in coins){
-   console.log(typeof users[el][i].converted)
-    coins[users[el][i].coinname]+=users[el][i].converted
+   console.log(typeof users[el][i].amount)
+    coins[users[el][i].coinname]+=users[el][i].amount
    
   } else {
-    coins[users[el][i].coinname]=users[el][i].converted;
+    coins[users[el][i].coinname]=users[el][i].amount;
   }
 }
 work[el]=coins;
@@ -49,7 +49,10 @@ coins={}
   return(
     <div className={`${style.stats} container`}>
       <h2 className={style.title}>See where people invest</h2>
-     {updUsers?  <Workstats /> : (<div></div>)} 
+      <div className="row d-flex flex-wrap">
+      {updUsers?  <Workstats /> : (<div></div>)} 
+      </div>
+    
      
     </div>
   )

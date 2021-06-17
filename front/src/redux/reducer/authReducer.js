@@ -3,7 +3,7 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 export const fetchRegisterUser=createAsyncThunk(
   'user/fetchRegisterUser',
   async ({username, email, password, work})=>{
-    const response=await fetch('http://localhost:8000/signup', {
+    const response=await fetch('/signup', {
     method: "POST",
     credentials: "include",
     headers: {
@@ -19,7 +19,7 @@ export const fetchRegisterUser=createAsyncThunk(
 export const fetchLoginUser=createAsyncThunk(
   'user/fetchLoginUser',
   async ({username, password})=>{
-    const response=await fetch('http://localhost:8000/login', {
+    const response=await fetch('/login', {
     method: "POST",
     credentials: "include",
     headers: {
@@ -35,7 +35,7 @@ export const fetchLoginUser=createAsyncThunk(
 export const fetchLogoutUser=createAsyncThunk(
   'user/fetchLogoutUser',
   async ()=>{
-    const response=await fetch('http://localhost:8000/logout', {
+    const response=await fetch('/logout', {
       credentials: "include",
     })
   const result = await response.json();
@@ -46,7 +46,7 @@ export const fetchLogoutUser=createAsyncThunk(
 export const fetchGetCoins=createAsyncThunk(
   'user/fetchGetCoins',
   async (username)=>{
-    const response=await fetch(`http://localhost:8000/${username}`, {
+    const response=await fetch(`/${username}`, {
       credentials: "include",
     })
   const result = await response.json();

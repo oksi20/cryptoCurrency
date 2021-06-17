@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { useSelector } from 'react-redux';
+import Loader from '../Loader/Loader';
 import Converter from './Converter';
 import FormConverter from './FormConverter';
 import list from "./list.module.css"
 
 const ConverterList = () => {
   let arrCrypto = useSelector((state) => state.coinspartial.cryptoArray);
+  const coinsLoading=useSelector(state=>state.coinspartial.loading)
   const [selectedCrypto, setSelectedCrypto] = useState({});
 
   const clickedCard = (name) => {
@@ -13,6 +15,8 @@ const ConverterList = () => {
     setSelectedCrypto(chosenCard);
   };
   return (
+    <>
+    {coinsLoading? <Loader /> :
     <div className={`container mt-5 ${list.list}`}>
       <div className="row mt-5">
         <div className="col-6 m-auto">
@@ -40,6 +44,9 @@ const ConverterList = () => {
         </div>
       </div>
     </div>
+}
+  </>
+  
   );
 };
 export default ConverterList;

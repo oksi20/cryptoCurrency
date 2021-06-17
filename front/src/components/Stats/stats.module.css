@@ -1,6 +1,7 @@
 .stats{
   background-color: rgba(0,0,0, 0.9);
   margin-top:50px;
+  width: 900px;
   /* display: flex; */
   /* flex-direction: column; */
   /* align-items: center; */

@@ -32,10 +32,11 @@ useEffect(()=>{
   //   </CardBody>
   // </Card>
   // <div className="container">
-    <div className="row">
+    
+<>
     {updatedArr? (updatedArr.map((el, indx)=><Bar key={indx} workName={el[0]} workData={el[1]} />)) :(<div></div>)} 
-    </div>
-  // </div>
+    </>
+  
   )
 }
 export default Workstats;

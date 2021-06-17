@@ -28,8 +28,8 @@ const Bar=({workData, workName})=>{
         });
 
   return(
-<div className="col">
-  <canvas ref={chartRef} id="myChart" width={100} height={100}></canvas>
+<div className="col m-5" style={{width:400}}>
+  <canvas ref={chartRef} id="myChart" width={200} height={200}></canvas>
 </div>
   )
   }
