@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build":"cd front && npm i && npm run build",
-    "start":"cd back && npm i && npm run start"
+    "start":"cd backend && npm i && npm run start"
   },
   "repository": {
     "type": "git",
