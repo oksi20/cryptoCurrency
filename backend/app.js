@@ -11,11 +11,13 @@ const session = require("express-session");
 const path = require("path");
 // импорт класса для хранения сессий
 const MongoStore = require("connect-mongo");
+
 const bcrypt = require("bcrypt");
 // импорт middleware для проверки сессий
+require('dotenv').config();
+const mongoUrl = process.env.DB_URL;
+const PORT = process.env.PORT || 8000;
 
-// const User = require("./models/users");
-// const Stat=require("./models/stats")
 const userRouter=require('./routers/userRouter')
 const cartRouter=require('./routers/cartRouter')
 const statsRouter=require('./routers/statsRouter')
@@ -43,9 +45,7 @@ const sessionChecker = (req, res, next) => {
   }
 };
 
-const saltRounds = 10;
-
-const PORT = 8000;
+// const PORT = 8000;
 
 app.use(
   cors({
@@ -59,7 +59,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 const options = {
-  store: MongoStore.create({ mongoUrl: "mongodb://localhost:27017/crypto" }),
+  store: MongoStore.create({ mongoUrl:mongoUrl}),
   // ключ
   key: "user_sid",
   secret: "anything here",
@@ -93,7 +93,7 @@ res.sendFile(buildHtml);
 
 app.listen(PORT, async () => {
   mongoose
-    .connect("mongodb://localhost:27017/crypto", {
+    .connect(mongoUrl, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
       useCreateIndex: true,
@@ -103,3 +103,5 @@ app.listen(PORT, async () => {
     .catch(() => console.log("error connect to mongoose"));
   console.log(`Server started at port:${PORT}`);
 });
+// "mongodb://localhost:27017/crypto"
+// "mongodb://localhost:27017/crypto"
