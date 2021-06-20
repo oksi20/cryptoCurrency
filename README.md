@@ -23,7 +23,7 @@ After clonning project, create .env file and add
 
 * DB_URL=your access to MongoDB
 
-# Start project
+# Running
 
 * cd backend && npm i && npm start
 * cd front && npm i && npm start
