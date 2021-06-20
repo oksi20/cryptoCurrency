@@ -25,7 +25,9 @@ const ConverterList = () => {
             rate={selectedCrypto.current_price}
             id={selectedCrypto.id}
           />
+          <p style={{color:"white"}} >Enter amount of money and choose one of cryptos</p>
         </div>
+        
       </div>
       <div className="row">
         <div className="col-12">

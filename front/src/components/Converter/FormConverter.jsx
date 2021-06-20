@@ -42,7 +42,7 @@ setInput({amount:val, converted:convertedPrice})
     <form className='form d-flex'>
       <FormGroup className="d-flex">
       <div className="input-form mb-3 d-flex">
-       <Exchange onChange={calculatedPrice} textLabel="USD" />
+       <Exchange onChange={calculatedPrice} textLabel="USD" placeholder="enter amount $" />
         <i className="fas fa-exchange-alt" />
         <Exchange textLabel={symbol} value={input.converted}/>
         <Button className="p-1 ml-3" style={{width:250}} type="button" onClick={addCryptoToCart} >Add <i class="fas fa-shopping-cart"></i> </Button>

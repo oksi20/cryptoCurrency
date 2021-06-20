@@ -36,11 +36,11 @@ const Header =()=>{
               <Link className={style["nav-link"]} to="/calculator">Converter</Link>
             </li>
             <li className="nav-item">
-              <Link className={style["nav-link"]} to="/coinslist">CoinList</Link>
+              <Link className={style["nav-link"]} to="/coinslist">List</Link>
             </li>
             {!user.isAuthorised ? 
              ( <>
-            <li className="nav-item">
+            <li className="nav-item" style={{marginLeft:750}}>
               <Link className={style["nav-link"]} to="/login">Login</Link>
             </li>
             <li className="nav-item">
@@ -49,7 +49,7 @@ const Header =()=>{
             
             </>): 
               (<>
-              <li className="nav-item">
+              <li className="nav-item" style={{marginLeft:650}}>
               <Link className={style["nav-link"]} to="/profile">Profile</Link>
             </li>
               <li className="nav-item">
@@ -70,17 +70,13 @@ const Header =()=>{
       
         }
         
-        {/* {
-          userCart.length? <i style={{marginTop:10, marginRight:15, color:"red"}} class="fas fa-shopping-cart fa-lg"></i> :
-          <i style={{marginTop:10, marginRight:15, color:"white"}} className="fas fa-shopping-cart fa-lg shopcart"><span className={style.shopNum}>3</span></i> 
-         }
-              */}
+       
             
           </Link>
-          <form className="d-flex mr-4">
-        <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" />
-        <button className="btn btn-outline-success" type="submit">Search</button>
-      </form>
+          {/* <form className="d-flex mr-4"> */}
+        {/* <input className="form-control me-2" type="search" placeholder="Search" aria-label="Search" /> */}
+        {/* <button className="btn btn-outline-success" type="submit">Search</button> */}
+      {/* </form> */}
       </div>
           </div>
         </nav>
