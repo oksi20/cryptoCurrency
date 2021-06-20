@@ -3,6 +3,11 @@
 Website shows prices and dynamic price trends for crypto currencies and allows currency conversions. 
 Registered users can manage their crypto portfolio and track their return of investments.
 
+
+<div> <img src="imagesGH/list.png" width="470">  <img src="imagesGH/cryptoInfo.png" width="470"></div>
+<div> <img src="imagesGH/converter.png" width="470">  <img src="imagesGH/statistic.png" width="470"></div>
+
+
 # Used technologies
 
 * JavaScript
