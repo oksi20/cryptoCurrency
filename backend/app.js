@@ -49,7 +49,7 @@ const sessionChecker = (req, res, next) => {
 
 app.use(
   cors({
-    origin: "*",
+    // origin: "*",
     credentials: true,
   })
 );

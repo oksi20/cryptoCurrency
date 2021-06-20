@@ -4,7 +4,7 @@ export const fetchAddCarttoDB=createAsyncThunk(
   'cart/fetchAddCarttoDB',
   async ({cart, username})=>{
     const {id, amount, converted}=cart;
-    const response=await fetch(`/cart/${username}`, {
+    const response=await fetch(`/api/v1/cart/${username}`, {
     method: "POST",
     credentials: "include",
     headers: {
@@ -20,7 +20,7 @@ export const fetchAddCarttoDB=createAsyncThunk(
 export const fetchdeleteFromCart=createAsyncThunk(
   'cart/fetchdeleteFromCart',
   async ({id, username})=>{
-    const response=await fetch(`/cart/${username}/${id}`, {
+    const response=await fetch(`/api/v1/cart/${username}/${id}`, {
     method: "DELETE",
     credentials: "include",
   })
@@ -36,7 +36,7 @@ export const fetchdeleteFromCart=createAsyncThunk(
 export const fetchDownloadCart=createAsyncThunk(
   'cart/fetchDownloadCart',
   async (username)=>{
-    const response=await fetch(`/cart/${username}`, {
+    const response=await fetch(`/api/v1/cart/${username}`, {
     credentials: "include",
   })
   const result = await response.json();
@@ -48,7 +48,7 @@ export const fetchPurchaseCoins=createAsyncThunk(
   'cart/fetchPurchaseCoins',
   async ({username})=>{
     console.log(username);
-    const response=await fetch(`/cart/${username}`, {
+    const response=await fetch(`/api/v1/cart/${username}`, {
       method:"PUT",
     credentials: "include",
   })
